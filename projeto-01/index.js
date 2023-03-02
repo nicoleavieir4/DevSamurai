@@ -1,28 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ping-Pong</title>
-    <style>
-        * {
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-</head>
-<body>
-    <canvas></canvas>
-
-    <script>
-
-        const canvasE1 = document.querySelector("canvas"),
-        canvasCtx = canvasE1.getContext("2d")
-        gapX = 10
-
-        const mouse = { x: 0, y: 0 }
+const canvasE1 = document.querySelector("canvas"),
+         canvasCtx = canvasE1.getContext("2d")
+         gapX = 10
 
         const lineWidth = 15
 
@@ -52,14 +30,9 @@
             y: 100,
             w: line.w,
             h: 200,
-            _move: function() {
-                this.y = mouse.y - this.h / 2
-            },
             draw() {
             canvasCtx.fillStyle = "#ffffff"
             canvasCtx.fillRect(this.x, this.y, this.w, this.h)
-
-            this._move()
             },
         }
 
@@ -69,14 +42,9 @@
             y: 100,
             w: line.w,
             h: 200,
-            _move: function() {
-                this.y = ball.y
-            },
             draw() {
             canvasCtx.fillStyle = "#ffffff"
             canvasCtx.fillRect(this.x, this.y, this.w, this.h)
-
-            this._move()
             },
         }
 
@@ -99,18 +67,11 @@
             x: 300,
             y: 200,
             r: 20,
-            speed: 5,
-            _move: function() {
-                this.x += 1 * this.speed
-                this.y += 1 * this.speed
-            },
             draw: function() {
             canvasCtx.fillStyle = "#ffffff"
             canvasCtx.beginPath()
             canvasCtx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false)
             canvasCtx.fill()
-
-            this._move()
             },
         }
 
@@ -130,36 +91,5 @@
             ball.draw()
     
         }
-
-        window.setInterval(draw, 1000 / 60)
-         
-        window.animateFrame = (function () {
-            return (
-                window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                function (callback) {
-                    return window.setTimeout(callback, 1000 / 60)
-                }
-            )
-        })()
-
-        function main() {
-            animateFrame(main)
-            draw()
-        }
-
         setup()
-        main()
-
-        canvasE1.addEventListener("mousemove", function (e) {
-            mouse.x = e.pageX
-            mouse.y = e.pageY
-
-            console.log(mouse)
-        })
-    </script>
-</body>
-</html>
+        draw()
