@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Samurai</title>
+</head>
+<body>
+    <script>
+
+                // EXERCICIO O1
+
+        // var gasolina = prompt("Digite o valor da gasolina")
+        // var km = prompt("Digite quantos km deseja rodar")
+        // var kml = prompt("Digite o consumo")
+        // var resultado = (km * gasolina) / kml
+
+        // alert(resultado)
+
+
+                // EXERCICIO O2
+
+        // var idade_permitida = 18
+        // var idade_pessoa = prompt("Digite a sua idade")
+
+        // if (idade_pessoa >= idade_permitida){
+        //     alert('acesso permitido')
+        // } else{
+        //     alert('acesso NEGADO')
+        // }
+
+                // EXERCICIO O3
+
+        //  var idioma = prompt("Por favor, digite o código do IDIOMA")
+
+
+        //  if (idioma == "pt") {
+        //     alert("Olá")
+        //  } else if (idioma == "en") {
+        //     alert("Hi") 
+        //  } else if (idioma == "fr") {
+        //     alert("Salut")
+        //  } else if (idioma == "es") {
+        //     alert("Hola") 
+        //  } else {
+        //     alert("Código do idioma não reconhecido")
+        //  }
+
+
+               // EXERCICIO 04
+
+        // var idioma = prompt("Por favor, digite o código do IDIOMA")
+        // var variacao = prompt("Por favor, digite a variação")
+
+
+        // if ((idioma == "pt") && (variacao == "br" || variacao == "pt")) {
+        //     alert("Olá")
+        // } else if (idioma == "en" && variacao == "us"){
+        //     alert("Hi")
+        // } else if (idioma == "en" && variacao == "gb"){
+        //     alert("Hello")
+        // } else {
+        //     alert("Idioma e/ou variação não reconhecido(s).")
+        // }
+
+
+                // EXERCICIO 05
+
+        // var contador = 1
+
+        // while (contador <= 10) {
+        //     console.log(contador + " Felipe")
+        //     contador = contador + 1
+        // }
+
+        // console.log("Fim da execução")
+
+
+                // EXERCICIO 05
+
+        function soma (a, b) {
+            return a + b
+        }
+        function dividir (a, b) {
+            return a / b
+        }
+        function multiplicar (a, b) {
+            return a * b
+        }
+        function subtrair (a, b) {
+            return a - b
+        }
+
+        var n1 = Number(prompt("Digite o número 1"))
+        var n2 = Number(prompt("Digite o número 2"))
+        var op = prompt("Operação")
+        var resultado
+
+        if (op == "+") {
+            resultado = soma(n1, n2)
+        } else if (op == "/") {
+            resultado = dividir(n1, n2) 
+        } else if (op == "*") {
+            resultado = multiplicar(n1, n2) 
+        } else if (op == "-") {
+            resultado = subtrair(n1, n2) 
+        } else {
+            alert ("Operação não encontrada")
+            }
+
+        alert(resultado)
+
+
+
+
+    </script>
+</body>
+</html>
+
