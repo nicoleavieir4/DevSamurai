@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ping-Pong</title>
-    <style>
-        * {
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-</head>
-<body>
-    <canvas></canvas>
-
-    <script>
 
         const canvasE1 = document.querySelector("canvas"),
         canvasCtx = canvasE1.getContext("2d")
@@ -66,11 +47,19 @@
         //desenha a raquete direita
         const rightPaddle = {
             x: field.w - line.w - gapX,
-            y: 100,
+            y: 0,
             w: line.w,
             h: 200,
+            speed: 5,
             _move: function() {
-                this.y = ball.y
+                if (this.y + this.h / 2 < ball.y + ball.r) {
+                    this.y += this.speed
+                } else {
+                    this.y -= this.speed
+                }
+            },
+            speedUp: function() {
+                    this.speed += 2
             },
             draw() {
             canvasCtx.fillStyle = "#ffffff"
@@ -82,8 +71,14 @@
 
         //desenha o placar
         const score = {
-            human: 1,
-            computer: 2,
+            human: 0,
+            computer: 0,
+            increaseHuman: function () {
+                this.human++
+            },
+            increaseComputer: function () {
+                this.computer++
+            },
             draw: function () {
             canvasCtx.font = "bold 72px Arial"
             canvasCtx.textAlign  = "center"
@@ -96,13 +91,71 @@
 
         //desenha a bolinha
         const ball = {
-            x: 300,
-            y: 200,
+            x: 0,
+            y: 0,
             r: 20,
-            speed: 5,
+            speed: 3,
+            directionX: 1,
+            directionY: 1,
+            _calcPosition: function() {
+                //verifica se o jogador 1 fez um ponto (x > largura do campo)
+                if (this.x > field.w - this.r - rightPaddle.w - gapX) {
+                //verifica se a raquete direita está na posição y da bola
+                    if (this.y + this.r > rightPaddle.y && 
+                        this.y - this.r < rightPaddle.y + rightPaddle.h
+                        ) {   
+                //rebate a bolinha invertendo o sinal do eixo X
+                        this._reverseX() 
+                        } else {
+                //pontuar jogador 1
+                          score.increaseHuman()
+                          this._pointUp()
+                        }
+                    }
+
+                //verifica se o jogador 2 fez um ponto (x < 0)
+                if(this.x < this.r + leftPaddle.w + gapX) {
+                //verifica se  a raquete esquerda está na posição y da bola
+                    if (this.y + this.r > leftPaddle.y && 
+                        this.y - this.r < leftPaddle.y + leftPaddle.h) {
+                //rebate a bolinha invertendo o sinal do eixo X     
+                        this._reverseX()
+                    }   else {
+                //pontuar o jogador 2
+                        score.increaseComputer()
+                        this._pointUp()
+                    }
+                }
+
+                //verifica as laterais superior e inferior do campo
+                if (
+                    (this.y - this.r < 0 && this.directionY < 0) ||
+                    (this.y > field.h - this.r && this.directionY > 0) 
+                    ) {
+                //rebate a bolinha invertendo o sinal do eixo Y
+                    this._reverseY()
+                }
+            },
+            _reverseX: function() {
+                this.directionX *= -1
+            },
+            _reverseY: function() {
+                this.directionY *= -1
+            },
+            _speedUp: function () {
+                this.speed += 2
+            },
+            _pointUp: function() {
+                this._speedUp()
+                rightPaddle.speedUp()
+
+                this.x = field.w / 2
+                this.y = field.h / 2
+
+            },
             _move: function() {
-                this.x += 1 * this.speed
-                this.y += 1 * this.speed
+                this.x += this.directionX * this.speed
+                this.y += this.directionY * this.speed
             },
             draw: function() {
             canvasCtx.fillStyle = "#ffffff"
@@ -110,6 +163,7 @@
             canvasCtx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false)
             canvasCtx.fill()
 
+            this._calcPosition()
             this._move()
             },
         }
@@ -160,6 +214,3 @@
 
             console.log(mouse)
         })
-    </script>
-</body>
-</html>
