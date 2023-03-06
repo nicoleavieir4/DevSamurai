@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>DOM</title>
+</head>
+<body>
+
+    <h1>Iniciando estudos com DOM</h1>
+    <p>Aqui vai o resultado</p>
+    <p>Aprendendo usar o <strong>DOM</strong> em JavaScript.</p>
+    <div onclick="nome"><button>Clique em mim</button></div>
+
+    <script>
+        var p1 = window.document.getElementsByTagName('p')[1]
+        var corpo = window.document.body
+        var d = window.document.getElementById('msg')
+        //d.style.background = 'blue'
+        //d.innerText = 'Estou aguardando...'
+        //var d = window.document.querySelector('div#msg')
+        //d.style.color = 'purple'
+        var name = window.prompt('Digite seu nome:')
+        var execute = (window.alert('Você está no caminho certo, ' + name + '!'))
+
+</script>
+</body>
+</html>
