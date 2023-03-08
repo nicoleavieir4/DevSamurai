@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAÍS</title>
+</head>
+<body>
+    <h1>Checagem estrangeiro</h1>
+    Em qual país você mora? <input type="text" name="txtpais" id="txtpais">
+    <input type="button" value="Verificar" onclick="verificando()">
+    <div id="res">
+
+    </div>
+
+    <script>
+        function verificando(){
+            var txtpais = document.getElementById('txtpais')
+            var res = document.getElementById('res')
+            var nac = ''
+                if(txtpais.value == 'Brasil'){
+                    nac = 'brasileira'
+                } else{
+                    nac = 'estrangeira'
+                }
+            res.innerHTML = `<p>Vivendo em ${txtpais.value}. Você é ${nac}</p>`
+            
+        } 
+
+        // if (pais != 'Brasil' && nac2){
+        //     console.log('Você é estrangeiro.')
+        // } else{
+        //     console.log("Você é brasileiro.")
+        // }
+    </script>
+</body>
+</html>
