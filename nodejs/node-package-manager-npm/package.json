@@ -1,0 +1,14 @@
+{
+  "name": "node-npm",
+  "version": "1.0.0",
+  "description": "aprendendo node",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cfonts": "^3.1.1"
+  }
+}
